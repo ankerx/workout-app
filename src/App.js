@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Home from "./Components/Home";
+import { useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
+import CreateWorkout from "./Components/CreateWorkout";
+import EditWorkout from "./Components/EditWorkout";
+import { GlobalProvider } from "./Context/GlobalState";
+import Heading from "./Components/Heading";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+  const darkTheme = createTheme({
+    palette: {
+      mode: darkMode ? "dark" : "light",
+    },
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <div className="App">
+        <GlobalProvider>
+          <HashRouter>
+            <Heading darkMode={darkMode} setDarkMode={setDarkMode} />
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route path="/createworkout" element={<CreateWorkout />} />
+              <Route path="/editworkout/:id" element={<EditWorkout />} />
+            </Routes>
+          </HashRouter>
+        </GlobalProvider>
+      </div>
+    </ThemeProvider>
   );
 }
 
