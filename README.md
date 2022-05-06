@@ -3,6 +3,7 @@
 See the website: https://ankerx.github.io/workout-app/
 
 My first simple react project. This app is created to track workout data.
+<img width="1436" alt="workoutapp" src="https://user-images.githubusercontent.com/93661548/167182714-33fdafc2-6d04-4567-a265-92cb35cf529b.png">
 
 ## Description
 
